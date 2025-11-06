@@ -1,0 +1,47 @@
+networks:
+  net:
+    driver: bridge
+
+services:
+  server:
+    container_name: flask_server
+    build: ./server
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./server/server-data:/app/data
+    networks:
+      - net
+    tty: true
+
+  alice:
+    container_name: container_alice
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      target: alice
+    command: tail -f /dev/null
+    volumes:
+      - ./client/alice_keys:/app/my_keys
+    networks:
+      - net
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+
+  bob:
+    container_name: container_bob
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      target: bob
+    command: tail -f /dev/null
+    volumes:
+      - ./client/bob_keys:/app/my_keys
+    networks:
+      - net
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true

@@ -1,0 +1,5 @@
+.DS_Store
+.vscode/
+alice_keys/
+bob_keys/
+server/server-data/
