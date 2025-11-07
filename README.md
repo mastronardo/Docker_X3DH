@@ -7,9 +7,9 @@ Host's specifications:
 - Architecture: arm64
 - CPU : Apple M2 (8 core)
 - RAM : 8 GB
-- Docker Desktop: 4.49.0
-- Docker version: 28.5.1
-- Docker compose: 2.40.3
+- Docker Desktop: 4.50.0
+    - Docker version: 28.5.1
+    - Docker compose: 2.40.3
 
 Containers's specifications:
 - OS: GNU/Linux Debian 13.1

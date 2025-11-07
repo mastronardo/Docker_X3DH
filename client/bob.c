@@ -48,7 +48,7 @@ void get_opk_path(char *path_buf, size_t buf_len, int key_id) {
 int bob_register() {
     printf("--- Bob: Registering ---\n");
     if (file_exists(BOB_IK_PRIV_FILE)) {
-        int c;
+        short int c;
         while(1){
             printf("WARNING: Keys already exist at %s.\n", BOB_KEYS_DIR);
             printf("Are you sure you want to overwrite them? (y/n): ");
@@ -90,7 +90,7 @@ int bob_register() {
     json_t *bundle_data = NULL;
     json_t *opks_json_list = NULL;
     ResponseInfo resp = {0};
-    int ret = -1;
+    short int ret = -1;
 
     // --- 1a. Generate Identity Key (IK) ---
     randombytes_buf(ik_priv, sizeof(ik_priv));
@@ -217,9 +217,9 @@ int bob_read_initial_message() {
     ResponseInfo resp = {0};
     unsigned char *ciphertext = NULL;
     unsigned char *decrypted_msg = NULL;
-    int ret = -1;
-    int has_opk = 0;
-    int opk_id = -1;
+    short int ret = -1;
+    short int has_opk = 0;
+    short int opk_id = -1;
 
     // 1. Fetch message from server
     char url_buf[URL_BUFFER_SIZE];
@@ -624,7 +624,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int ret = 0;
+    short int ret = 0;
     const char *command = argv[1];
 
     if (strcmp(command, "register") == 0) {

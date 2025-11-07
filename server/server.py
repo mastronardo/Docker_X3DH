@@ -92,10 +92,7 @@ def init_database_on_startup() -> None:
 # --- X3DH Registration Endpoints ---
 @app.route('/register_ik', methods=['POST'])
 def register_ik() -> jsonify:
-    """Register a user's identity public key (IK).
-    Returns:
-        JSON response with status.
-    """
+    """Register a user's identity public key (IK)."""
     data = request.json
     if not data or 'username' not in data or 'ik_b64' not in data:
         return jsonify({"error": "Missing username or ik_b64"}), 400
@@ -105,12 +102,16 @@ def register_ik() -> jsonify:
     
     db = get_db()
     try:
-        db.execute("INSERT INTO users (username, ik_b64) VALUES (?, ?)", (username, ik_b64))
+        db.execute("""
+            INSERT INTO users (username, ik_b64) 
+            VALUES (?, ?)
+            ON CONFLICT(username) DO UPDATE SET
+                ik_b64 = excluded.ik_b64
+        """, (username, ik_b64))
         db.commit()
-    except sqlite3.IntegrityError:
-        # User might be re-registering
-        print(f"User {username} already exists. Ignoring IK registration.")
-        pass
+    except Exception as e:
+        print(f"Error during IK registration: {e}")
+        return jsonify({"error": str(e)}), 500
     
     return jsonify({"status": "created"}), 201
 

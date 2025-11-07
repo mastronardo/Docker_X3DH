@@ -4,6 +4,7 @@
 set -e
 
 echo "--- [Build] Building all containers ---"
+docker image rm x3dh-server x3dh-alice x3dh-bob # Remove the old images if they exist
 docker-compose up -d --build
 
 echo "--- [System] Waiting for server to be ready..."

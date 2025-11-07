@@ -32,7 +32,7 @@ void get_sk_path(char *path_buf, size_t buf_len, const char *recipient) {
 int alice_register() {
     printf("--- Alice: Registering ---\n");
     if (file_exists(ALICE_IK_PRIV_FILE)) {
-        int c, extra;
+        short int c, extra;
         while(1){
             printf("WARNING: Keys already exist at %s.\n", ALICE_KEYS_DIR);
             printf("Are you sure you want to overwrite them? (y/n): ");
@@ -64,7 +64,7 @@ int alice_register() {
     char *ik_pub_b64 = NULL;
     json_t *upload_data = NULL;
     ResponseInfo resp = {0};
-    int ret = -1;
+    short int ret = -1;
 
     // 1. Generate Identity Key (IK)
     randombytes_buf(ik_priv, sizeof(ik_priv));
@@ -132,9 +132,9 @@ int alice_send_initial_message(const char *recipient) {
     
     ResponseInfo get_resp = {0};
     ResponseInfo post_resp = {0};
-    int ret = -1;
-    int opk_id = -1;
-    int has_opk = 0;
+    short int ret = -1;
+    short int opk_id = -1;
+    short int has_opk = 0;
 
     // 1. Load Alice's identity keys
     if (read_file(ALICE_IK_PRIV_FILE, ik_priv, sizeof(ik_priv)) != 0 ||
@@ -571,7 +571,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int ret = 0;
+    short int ret = 0;
     const char *command = argv[1];
 
     if (strcmp(command, "register") == 0) {
