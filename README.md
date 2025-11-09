@@ -2,7 +2,7 @@
 An implementation of the X3DH Key Agreement Protocol with Docker containers
 
 ## Specifications
-Host's specifications:
+`Host`'s specifications:
 - OS: macOS 26.0.1
 - Architecture: arm64
 - CPU : Apple M2 (8 core)
@@ -11,7 +11,7 @@ Host's specifications:
     - Docker version: 28.5.1
     - Docker compose: 2.40.3
 
-Containers's specifications:
+`Containers`'s specifications:
 - OS: GNU/Linux Debian 13.1
 - gcc: 14.2.0
 - Make: 4.4.1
@@ -21,6 +21,7 @@ Containers's specifications:
 - Python: 3.12.12
 - Flask: 3.1.2
 - SQLite: 3.46.1
+- sqlite-browser: 3.13.1
 
 ## How to build it
 Do not use `sudo` for the following commands if your user has permissions to run Docker commands.
@@ -37,6 +38,7 @@ chmod +x down_service.sh
 # Pull the base images
 sudo docker pull debian:trixie-slim
 sudo docker pull python:3.12.12-slim-trixie
+sudo docker pull linuxserver/sqlitebrowser:3.13.1
 ```
 
 ## How to use it
@@ -45,6 +47,7 @@ sudo docker pull python:3.12.12-slim-trixie
 # Wait until the service is fully started.
 ./sart_service.sh
 ```
+To visit the `SQLite Browser`, open your web browser and go to `http://localhost:3000`.
 
 ```bash
 # X3DH Protocol
