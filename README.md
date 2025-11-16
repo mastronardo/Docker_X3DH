@@ -1,14 +1,14 @@
-# Docker_X3DH
+# X3DH implementation for Docker containers
 An implementation of the X3DH Key Agreement Protocol with Docker containers
 
 ## Specifications
 `Host`'s specifications:
-- OS: macOS 26.0.1
+- OS: macOS 26.1
 - Architecture: arm64
 - CPU : Apple M2 (8 core)
 - RAM : 8 GB
-- Docker Desktop: 4.50.0
-    - Docker version: 28.5.1
+- Docker Desktop: 4.51.0
+    - Docker version: 28.5.2
     - Docker compose: 2.40.3
 
 `Containers`'s specifications:
@@ -29,9 +29,7 @@ Do not use `sudo` for the following commands if your user has permissions to run
 ```bash
 git clone https://github.com/mastronardo/Docker_X3DH.git
 cd Docker_X3DH
-chmod +x sart_service.sh
-chmod +x stop_service.sh
-chmod +x down_service.sh
+chmod +x sart_service.sh stop_service.sh down_service.sh
 ```
 
 ```bash

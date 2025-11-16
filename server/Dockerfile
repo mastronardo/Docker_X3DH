@@ -6,11 +6,9 @@ WORKDIR /app
 
 # Copy and install Python requirements
 COPY . .
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip-review --auto
-
-# Expose the Flask port
-EXPOSE 5001
 
 # Create the directory for the SQLite database
 RUN mkdir -p /app/data
